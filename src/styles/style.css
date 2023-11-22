@@ -168,6 +168,11 @@ textarea::placeholder {
   color: #b00020;
 }
 
+footer {
+  text-align: center;
+  padding: 20px;
+}
+
 @media only screen and (min-width: 500px) {
   .notes-list {
     grid-template-columns: 1fr 1fr;

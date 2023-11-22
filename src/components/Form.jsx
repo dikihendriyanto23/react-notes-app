@@ -2,26 +2,33 @@ import React, { useState } from "react";
 import Input from "./Input";
 import Button from "./Button";
 
-function Form(onCreated) {
+function Form({ onCreated }) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
   const handleSubmit = (e) => {
+    e.preventDefault();
+
     if (!title || !body) {
       alert("Title and body field is required and cannot be empty!");
+      return;
     } else {
-      const date = new Date().toISOString();
-      const newNote = {
-        id: date,
-        title,
-        body,
-        archived: false,
-        createdAt: date,
-      };
+      let act = confirm("Are you sure to create new note?");
+      if (act) {
+        const date = new Date().toISOString();
+        const newNote = {
+          id: date,
+          title,
+          body,
+          archived: false,
+          createdAt: date,
+        };
 
-      onCreated((prevState) => [...prevState, newNote]);
-      setTitle("");
-      setBody("");
+        onCreated((prevState) => [...prevState, newNote]);
+        setTitle("");
+        setBody("");
+        alert("New note is successfully created!");
+      }
     }
   };
 
